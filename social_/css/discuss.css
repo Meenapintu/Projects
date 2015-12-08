@@ -1,0 +1,36 @@
+.discussion-content
+{
+	width : 1000px;
+	float : left;
+	min-height:800px;
+	background-color : white;
+}
+.line2
+{
+	width : 1000px;
+	height : 5px;
+	float : left;
+	background-color:#000000;
+}
+.discussion-header
+{
+	width : 980px;
+	height : 80px;
+	background-image : url("../images/discussion-header.png");
+	border-radius : 10px;
+	border : solid black 2px;
+	margin : auto; 
+	margin-top : 10px;
+	padding : 5px;
+}
+.discussion-body
+{
+	width : 980px;
+	min-height : 700px;
+	background-color : #FFFEFF;
+	border-radius : 10px;
+	border : solid blue 2px;
+	margin : auto; 
+	margin-top : 10px;
+	padding : 5px;
+}

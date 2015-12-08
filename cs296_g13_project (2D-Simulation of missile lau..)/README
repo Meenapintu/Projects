@@ -1,0 +1,29 @@
+CS 296 Lab Project Readme file.
+
+
+Group 13: 
+
+1)Shivam Garg (12D020036)
+    
+2)Pintu Lal Meena (120050018)
+    
+3)Pranay Dhondi(120050054)
+
+
+
+Project webpage link: http://www.cse.iitb.ac.in/~shivamg/project.html
+
+make dist: makes a distributable cs296_g13_project.tar.gz in the parent directory of g13_project
+make install: Installs the project to the given folder denoted by the variable INSTDIR
+If you want to install the project in the directory containing Makefile, set INSTDIR=. or INSTDIR=./
+
+The work we have submitted for this assignment is entirely our own and any resemblance to anything else is purely co-incidental.
+
+Sources:
+
+[1]http://www.youtube.com/watch?feature=player_detailpage&v=z_NauMiAguw#t=202/
+[2]http://stackoverflow.com/
+[3]https://www.iforce2d.net/b2dtut/
+[4]http://www.box2d.org/manual.html/
+[5]Mihir Kulkarni for helping in scripts
+
