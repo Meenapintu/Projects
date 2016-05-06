@@ -1,0 +1,56 @@
+# -*- Makefile -*-
+
+# TARGET_CC_PREFIX if needed for cross-compilation.
+#  see where used in Makefile.common
+#TARGET_CC_PREFIX := i386-elf-
+
+include Makefile.common
+#use on old qemu:
+#RANDOM_PORT := $(shell $(PROJECT_ROOT)/scripts/random_port)
+RANDOM_PORT =1234
+
+# uncomment the next line if using an older qemu.
+#QEMU_VGA_OPT=-std-vga
+# QEMU_VGA_OPT ?= -vga std 
+QEMU ?= $(shell which qemu-system-i386 || which qemu) $(QEMU_NO_KQEMU)
+
+run : all
+	$(QEMU) $(QEMU_VGA_OPT) $(QEMU_NETOPTS) -no-acpi diskc.img
+
+# build an ISO CD-rom image
+iso: all fd_aug.img
+	@-mkdir boot
+	cp diskc.img boot
+	cp fd_aug.img boot
+	mkisofs -o cd.iso -hard-disk-boot -b diskc.img	boot
+	# mkisofs -o cd.iso -b fd_aug.img	boot
+
+cdrun:	iso
+	qemu $(QEMU_VGA_OPT) -boot d -cdrom cd.iso
+
+dbgcd : all
+	qemu $(QEMU_VGA_OPT)  -s -S $(QEMU_VGA_OPT) -boot d -cdrom cd.iso
+
+dbgruncurses : all
+	echo "target remote localhost:$(RANDOM_PORT)" > .gdbinit
+	#use on old qemu:	
+	qemu -curses -no-fd-bootchk -m 10 -s -S -p $(RANDOM_PORT) $(QEMU_VGA_OPT) -no-acpi diskc.img -hdb diskd.img
+
+dbgrun : all
+	echo "target remote localhost:$(RANDOM_PORT)" > .gdbinit
+	#use on old qemu:	
+	$(QEMU) -no-fd-bootchk -m 3 -S $(GDB_OPT) $(QEMU_VGA_OPT) -no-acpi diskc.img -k en-us
+
+dbg : all
+	gdb geekos/kernel.exe
+
+# qemu:
+#   wget www.cs.umd.edu/~ntg/qemu/qemu
+#   chmod a+x qemu
+
+#note: if in linuxlab then:
+#BIOSLOCATION:= -L /usr/local/qemu-0.10.5/share/qemu
+printrun: qemu all
+	./qemu -no-fd-bootchk -m 10 --vga std -curses -no-acpi diskc.img -hdb diskd.img -port-e9 file:out.txt $(BIOSLOCATION)
+
+include depend.mak

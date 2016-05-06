@@ -1,0 +1,11 @@
+# Submit server .submit file for
+#  Course CMSC412
+#  Project 4b
+
+courseName=CMSC412
+semester=201301
+projectNumber=4b
+courseKey=733cf86e8152cbe2
+authentication.type=ldap
+baseURL=https://submit.cs.umd.edu:443
+submitURL=https://submit.cs.umd.edu:443/eclipse/SubmitProjectViaEclipse

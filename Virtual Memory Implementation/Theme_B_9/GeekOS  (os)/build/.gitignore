@@ -1,0 +1,10 @@
+.elog
+common
+depend.mak
+diskc.img
+diskd.img
+geekos
+libc
+pagefile.bin
+tools
+user

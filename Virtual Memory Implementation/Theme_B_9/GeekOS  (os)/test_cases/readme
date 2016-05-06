@@ -1,0 +1,4 @@
+in example1.c :
+	there is no pagefault.
+in rest examples no_page fault varies
+
